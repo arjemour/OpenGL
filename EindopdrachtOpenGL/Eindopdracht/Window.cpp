@@ -7,6 +7,7 @@
 #include "CubeModel.h"
 #include "Entity.h"
 #include <Box2D/Box2D.h>
+#include "BoxComponent.h"
 float lowerX = -25.0f, upperX = 25.0f, lowerY = -25.0f, upperY = 25.0f;
 int fps = 60;
 float timePerTick = 1000 / fps;
@@ -15,7 +16,6 @@ long timeSinceStart = 0;
 long oldTimeSinceStart = 0;
 float timer = 0;
 int ticks = 0;
-
 int width, height;
 float lastFrameTime = 0;
 bool keys[255];
@@ -91,6 +91,17 @@ void update()
 			++it;
 		}
 	}
+	for each (auto entity in entities)
+	{
+		for each(auto component in entity->getComponents())
+		{
+			if (dynamic_cast<const BoxComponent*>(component) != nullptr)
+			{
+				BoxComponent* player = (BoxComponent*)component;
+				camera.posX = player->box->body->GetPosition().x * 60 * -1;
+			}
+		}
+	}
 }
 
 void Window::idle()
@@ -104,6 +115,8 @@ void Window::idle()
 	if (keys['d']) move(180, deltaTime*speed);
 	if (keys['w']) move(90, deltaTime*speed);
 	if (keys['s']) move(270, deltaTime*speed);
+	if (keys['z']) movePlayer(0);
+	if (keys['x']) movePlayer(1);
 
 	timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
 	delta += (timeSinceStart - oldTimeSinceStart) / timePerTick;
@@ -138,7 +151,7 @@ void Window::display()
 	glRotatef(camera.rotX, 1, 0, 0);
 	glRotatef(camera.rotY, 0, 1, 0);
 	//glTranslatef(1, 1.5f, 0);
-	glTranslatef(camera.posX, 0, camera.posY);
+	glTranslatef(camera.posX, -10, -20);
 
 	float pos[4] = { 0.5, 1, -1, 0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, pos);
@@ -159,7 +172,7 @@ void Window::display()
 
 void Window::passiveMotion(int x, int y)
 {
-	if (justMoved)
+/*	if (justMoved)
 	{
 		justMoved = false;
 		return;
@@ -172,14 +185,48 @@ void Window::passiveMotion(int x, int y)
 		camera.rotX += dy / 10.0f;
 		glutWarpPointer(width / 2, height / 2);
 		justMoved = true;
-	}
+	}*/
 }
 
 void Window::keyboard(unsigned char key, int, int)
 {
+	if(key == 99) movePlayer(2);
 	if (key == 27)
 		exit(0);
+
 	keys[key] = true;
+}
+
+void movePlayer(int direction)
+{
+	for each (auto entity in entities)
+	{
+		for each(auto component in entity->getComponents())
+		{
+			if (dynamic_cast<const BoxComponent*>(component) != nullptr)
+			{
+				BoxComponent* player = (BoxComponent*)component;
+				float impulse = player->box->body->GetMass();
+				switch (direction)
+				{
+				case 0:
+					player->box->body->ApplyLinearImpulseToCenter(b2Vec2(-100, 0.0), true);
+					break;
+				case 1:
+					player->box->body->ApplyLinearImpulseToCenter(b2Vec2(100, 0.0), true);
+					break;
+				case 2:
+					player->box->body->ApplyLinearImpulse(b2Vec2(0, impulse), player->box->body->GetWorldCenter(), true);
+					break;
+				default:
+					break;
+				}
+				float MAX_SPEED = 1.0f;
+				if (player->box->body->GetLinearVelocity().x < -MAX_SPEED) player->box->body->SetLinearVelocity(b2Vec2(-MAX_SPEED, player->box->body->GetLinearVelocity().y));
+				else if (player->box->body->GetLinearVelocity().x > MAX_SPEED) player->box->body->SetLinearVelocity(b2Vec2(MAX_SPEED, player->box->body->GetLinearVelocity().y));
+			}
+		}
+	}
 }
 
 void Window::keyboardUp(unsigned char key, int, int)
@@ -189,7 +236,7 @@ void Window::keyboardUp(unsigned char key, int, int)
 
 void Window::move(float angle, float fac)
 {
-	camera.posX += (float)cos((camera.rotY + angle) / 180 * M_PI) * fac;
-	camera.posY += (float)sin((camera.rotY + angle) / 180 * M_PI) * fac;
+/*	camera.posX += (float)cos((camera.rotY + angle) / 180 * M_PI) * fac;
+	camera.posY += (float)sin((camera.rotY + angle) / 180 * M_PI) * fac;*/
 }
 

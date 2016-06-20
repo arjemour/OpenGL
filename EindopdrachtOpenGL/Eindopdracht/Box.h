@@ -4,6 +4,8 @@
 class Box
 {
 public:
+	b2Body* body;
+
 	Box(b2World* world, float x, float y, int width, int height, bool isDynamic, bool fixedRotation, float angle = 0.0f);
 	~Box();
 	void update(Entity* entity);
@@ -16,7 +18,6 @@ private:
 	bool fixedRotation;
 
 	b2World* world;
-	b2Body* body;
 	b2Fixture* fixture;
 
 	const float M2P = 60;

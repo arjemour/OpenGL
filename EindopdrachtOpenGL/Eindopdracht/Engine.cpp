@@ -18,7 +18,7 @@ Engine::Engine()
 	worldEntity->addComponent(new WorldComponent("res/maps/map.txt", world));
 	entities.push_back(worldEntity);
 
-	auto* player = new Entity(9, 100, 0);
+	auto* player = new Entity(10, 100, 0);
 	player->addComponent(new CubeModelComponent());
 	player->addComponent(new BoxComponent(world, player));
 	entities.push_back(player);

@@ -27,9 +27,8 @@ WorldComponent::WorldComponent(std::string mapPath, b2World* world) : world(worl
 		y += 2;
 		x = 0;
 	}
-/*	coords.push_back(new Coords(10, 0));
-	Box* box = new Box(world, 10 , 0 , 1, 1, false, false);
-	boxes.push_back(box);*/
+	//Box* box = new Box(world, 0, 0, 10000, 1, false, false);
+	//boxes.push_back(box);
 }
 
 WorldComponent::~WorldComponent()
@@ -38,7 +37,7 @@ WorldComponent::~WorldComponent()
 
 void WorldComponent::update(Entity& entity)
 {
-	world->Step(1.0f / 60.0f, 6, 2);
+	world->Step(1.0f / 120.0f, 6, 2);
 }
 
 void WorldComponent::render(Entity& entity)

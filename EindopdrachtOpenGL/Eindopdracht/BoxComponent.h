@@ -10,8 +10,6 @@ public:
 	~BoxComponent();
 
 	void update(Entity& entity) override;
-
-private:
 	Box* box;
 };
 

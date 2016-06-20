@@ -28,7 +28,6 @@ Box::~Box()
 
 void Box::update(Entity* entity)
 {
-	std::cout << body->GetPosition().y << std::endl;
 	entity->x = body->GetPosition().x * M2P;
 	entity->y = body->GetPosition().y * M2P;
 }
