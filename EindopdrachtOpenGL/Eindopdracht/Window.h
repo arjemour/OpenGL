@@ -1,7 +1,6 @@
 #pragma once
 
 void update();
-void movePlayer(int direction);
 
 class Window
 {

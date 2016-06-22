@@ -4,6 +4,7 @@
 #include "CubeModelComponent.h"
 #include "WorldComponent.h"
 #include "BoxComponent.h"
+#include "PlayerMoveComponent.h"
 
 b2World* world;
 std::vector<Entity*> entities;
@@ -21,6 +22,7 @@ Engine::Engine()
 	auto* player = new Entity(10, 100, 0);
 	player->addComponent(new CubeModelComponent());
 	player->addComponent(new BoxComponent(world, player));
+	player->addComponent(new PlayerMoveComponent);
 	entities.push_back(player);
 }
 

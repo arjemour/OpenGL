@@ -20,6 +20,7 @@ int width, height;
 float lastFrameTime = 0;
 bool keys[255];
 bool justMoved = false;
+int direction = 100;
 CubeModel cube;
 extern std::vector<Entity*> entities;
 extern b2World* world;
@@ -115,8 +116,9 @@ void Window::idle()
 	if (keys['d']) move(180, deltaTime*speed);
 	if (keys['w']) move(90, deltaTime*speed);
 	if (keys['s']) move(270, deltaTime*speed);
-	if (keys['z']) movePlayer(0);
-	if (keys['x']) movePlayer(1);
+	if (keys['z']) direction = 0;
+	if (keys['x']) direction = 1;
+	if (keys['c']) direction = 2;
 
 	timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
 	delta += (timeSinceStart - oldTimeSinceStart) / timePerTick;
@@ -135,6 +137,7 @@ void Window::idle()
 		timer = 0;
 		ticks = 0;
 	}
+	direction = 100;
 }
 
 void Window::display()
@@ -190,43 +193,10 @@ void Window::passiveMotion(int x, int y)
 
 void Window::keyboard(unsigned char key, int, int)
 {
-	if(key == 99) movePlayer(2);
 	if (key == 27)
 		exit(0);
 
 	keys[key] = true;
-}
-
-void movePlayer(int direction)
-{
-	for each (auto entity in entities)
-	{
-		for each(auto component in entity->getComponents())
-		{
-			if (dynamic_cast<const BoxComponent*>(component) != nullptr)
-			{
-				BoxComponent* player = (BoxComponent*)component;
-				float impulse = player->box->body->GetMass();
-				switch (direction)
-				{
-				case 0:
-					player->box->body->ApplyLinearImpulseToCenter(b2Vec2(-100, 0.0), true);
-					break;
-				case 1:
-					player->box->body->ApplyLinearImpulseToCenter(b2Vec2(100, 0.0), true);
-					break;
-				case 2:
-					player->box->body->ApplyLinearImpulse(b2Vec2(0, impulse), player->box->body->GetWorldCenter(), true);
-					break;
-				default:
-					break;
-				}
-				float MAX_SPEED = 1.0f;
-				if (player->box->body->GetLinearVelocity().x < -MAX_SPEED) player->box->body->SetLinearVelocity(b2Vec2(-MAX_SPEED, player->box->body->GetLinearVelocity().y));
-				else if (player->box->body->GetLinearVelocity().x > MAX_SPEED) player->box->body->SetLinearVelocity(b2Vec2(MAX_SPEED, player->box->body->GetLinearVelocity().y));
-			}
-		}
-	}
 }
 
 void Window::keyboardUp(unsigned char key, int, int)
