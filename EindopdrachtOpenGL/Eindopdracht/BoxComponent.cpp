@@ -1,8 +1,8 @@
 #include "BoxComponent.h"
 
-BoxComponent::BoxComponent(b2World* world, Entity* entity)
+BoxComponent::BoxComponent(b2World* world, Entity* entity, int objectId)
 {
-	box = new Box(world, entity->x , entity->y, 1, 1 , true, false);
+	box = new Box(world, entity->x , entity->y, 1, 1 ,objectId, true, false);
 }
 
 

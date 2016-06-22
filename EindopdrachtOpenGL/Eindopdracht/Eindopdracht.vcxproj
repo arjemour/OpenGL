@@ -145,6 +145,7 @@
     <ClCompile Include="S_Vertex.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WorldComponent.cpp" />
+    <ClCompile Include="WorldContactListener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="ImageLibrary.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="MapLoader.h" />
+    <ClInclude Include="ObjectIdLibrary.h" />
     <ClInclude Include="ObjLibrary.h" />
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="ObjModelComponent.h" />
@@ -167,6 +169,7 @@
     <ClInclude Include="S_Vertex.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WorldComponent.h" />
+    <ClInclude Include="WorldContactListener.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

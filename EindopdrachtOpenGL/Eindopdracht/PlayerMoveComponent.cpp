@@ -35,7 +35,7 @@ void PlayerMoveComponent::update(Entity& entity)
 			default:
 				break;
 			}
-			float MAX_SPEED = 2.0f;
+			float MAX_SPEED = 1.0f;
 			if (player->box->body->GetLinearVelocity().x < -MAX_SPEED) player->box->body->SetLinearVelocity(b2Vec2(-MAX_SPEED, player->box->body->GetLinearVelocity().y));
 			else if (player->box->body->GetLinearVelocity().x > MAX_SPEED) player->box->body->SetLinearVelocity(b2Vec2(MAX_SPEED, player->box->body->GetLinearVelocity().y));
 		}

@@ -7,6 +7,8 @@
 #include "PlayerMoveComponent.h"
 #include "ObjModelComponent.h"
 #include "EnemyMovementComponent.h"
+#include "WorldContactListener.h"
+#include "ObjectIdLibrary.h"
 
 b2World* world;
 std::vector<Entity*> entities;
@@ -19,19 +21,20 @@ Engine::Engine()
 
 	auto* worldEntity = new Entity(0, 0, 0);
 	worldEntity->addComponent(new WorldComponent("res/maps/map.txt", world));
+	worldEntity->addComponent(new WorldContactListener(*world));
 	entities.push_back(worldEntity);
 
 	auto* player = new Entity(10, 100, 0);
 	player->addComponent(new ObjModelComponent(objectLibrary[0].second));
-	player->addComponent(new BoxComponent(world, player));
+	player->addComponent(new BoxComponent(world, player, playerId));
 	player->addComponent(new PlayerMoveComponent);
 	entities.push_back(player);
 
-	auto* box = new Entity(70, 2, 0);
-	box->addComponent(new ObjModelComponent(objectLibrary[1].second));
-	box->addComponent(new BoxComponent(world, box));
-	box->addComponent(new EnemyMovementComponent(70, 80));
-	entities.push_back(box);
+	auto* enemy = new Entity(70, 2, 0);
+	enemy->addComponent(new ObjModelComponent(objectLibrary[1].second));
+	enemy->addComponent(new BoxComponent(world, enemy, enemyId));
+	enemy->addComponent(new EnemyMovementComponent(70, 80));
+	entities.push_back(enemy);
 }
 
 Engine::~Engine()

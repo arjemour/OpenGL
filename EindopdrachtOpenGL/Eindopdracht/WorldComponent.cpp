@@ -2,6 +2,7 @@
 #include "MapLoader.h"
 #include "GL/freeglut.h"
 #include <iostream>
+#include "ObjectIdLibrary.h"
 
 WorldComponent::WorldComponent(std::string mapPath, b2World* world) : world(world)
 {
@@ -25,9 +26,9 @@ WorldComponent::WorldComponent(std::string mapPath, b2World* world) : world(worl
 		y += 2;
 		x = 0;
 	}
-	Box* box = new Box(world, 0, 0, 228, 1, false, false);
-	Box* box2 = new Box(world, 0, 0, 1, 22, false, false);
-	Box* box3 = new Box(world, 114, 0, 1, 22, false, false);
+	Box* box = new Box(world, 0, 0, 228, 1, boxId, false, false);
+	Box* box2 = new Box(world, 0, 0, 1, 44, boxId, false, false);
+	Box* box3 = new Box(world, 114, 0, 1, 44, boxId, false, false);
 	boxes.push_back(box);
 	boxes.push_back(box2);
 	boxes.push_back(box3);

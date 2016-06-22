@@ -3,6 +3,7 @@
 #include "Engine.h"
 #include "ObjLibrary.h"
 #include "ImageLibrary.h"
+#include "WorldContactListener.h"
 
 int main(int argc, char* argv[])
 {

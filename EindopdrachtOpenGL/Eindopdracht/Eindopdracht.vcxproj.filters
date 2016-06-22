@@ -95,6 +95,9 @@
     <ClCompile Include="ImageLibrary.cpp">
       <Filter>Source Files\Tools\ImageLoading</Filter>
     </ClCompile>
+    <ClCompile Include="WorldContactListener.cpp">
+      <Filter>Source Files\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -156,6 +159,12 @@
     </ClInclude>
     <ClInclude Include="ObjLibrary.h">
       <Filter>Source Files\Tools\ModelLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldContactListener.h">
+      <Filter>Source Files\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectIdLibrary.h">
+      <Filter>Source Files\Tools\ImageLoading</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

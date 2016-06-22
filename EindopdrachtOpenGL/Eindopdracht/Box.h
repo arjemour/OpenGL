@@ -6,9 +6,10 @@ class Box
 public:
 	b2Body* body;
 
-	Box(b2World* world, float x, float y, int width, int height, bool isDynamic, bool fixedRotation, float angle = 0.0f);
+	Box(b2World* world, float x, float y, int width, int height, int objectId, bool isDynamic, bool fixedRotation, float angle = 0.0f);
 	~Box();
 	void update(Entity* entity);
+	void reset(Entity* entity);
 
 private:
 	float x;
@@ -16,6 +17,7 @@ private:
 	float angle;
 	bool isDynamic;
 	bool fixedRotation;
+	bool resetPos = false;
 
 	b2World* world;
 	b2Fixture* fixture;

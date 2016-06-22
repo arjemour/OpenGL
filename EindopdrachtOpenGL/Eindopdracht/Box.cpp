@@ -1,7 +1,7 @@
 #include "Box.h"
 #include <iostream>
 
-Box::Box(b2World* world, float x, float y, int width, int height, bool isDynamic, bool fixedRotation, float angle) : x(x), y(y), angle(angle), isDynamic(isDynamic), fixedRotation(fixedRotation), world(world)
+Box::Box(b2World* world, float x, float y, int width, int height, int objectId, bool isDynamic, bool fixedRotation, float angle) : x(x), y(y), angle(angle), isDynamic(isDynamic), fixedRotation(fixedRotation), world(world)
 {
 	b2BodyDef bodyDef;
 	if (isDynamic) bodyDef.type = b2_dynamicBody;
@@ -10,10 +10,10 @@ Box::Box(b2World* world, float x, float y, int width, int height, bool isDynamic
 	bodyDef.fixedRotation = fixedRotation;
 	bodyDef.angle = angle;
 	body = world->CreateBody(&bodyDef);
+	body->SetUserData((void*)objectId);
 
 	b2PolygonShape boxShape;
 	boxShape.SetAsBox(P2M * width / 2, P2M * height / 2);
-
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &boxShape;
 	fixtureDef.density = 1.0f;
@@ -30,4 +30,16 @@ void Box::update(Entity* entity)
 {
 	entity->x = body->GetPosition().x * M2P;
 	entity->y = body->GetPosition().y * M2P;
+	if(resetPos)
+	{
+		body->SetTransform(b2Vec2(0.05f, 0.1f), body->GetAngle());
+		entity->x = body->GetPosition().x * M2P;
+		entity->y = body->GetPosition().y * M2P;
+		resetPos = false;
+	}
+}
+
+void Box::reset(Entity* entity)
+{
+	resetPos = true;
 }
