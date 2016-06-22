@@ -130,11 +130,19 @@
     <ClCompile Include="BoxComponent.cpp" />
     <ClCompile Include="CubeModel.cpp" />
     <ClCompile Include="CubeModelComponent.cpp" />
+    <ClCompile Include="EnemyMovementComponent.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="ImageLibrary.cpp" />
+    <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapLoader.cpp" />
+    <ClCompile Include="ObjLibrary.cpp" />
+    <ClCompile Include="ObjModel.cpp" />
+    <ClCompile Include="ObjModelComponent.cpp" />
+    <ClCompile Include="ObjTexture.cpp" />
     <ClCompile Include="PlayerMoveComponent.cpp" />
+    <ClCompile Include="S_Vertex.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WorldComponent.cpp" />
   </ItemGroup>
@@ -144,10 +152,19 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="CubeModel.h" />
     <ClInclude Include="CubeModelComponent.h" />
+    <ClInclude Include="EnemyMovementComponent.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="ImageLibrary.h" />
+    <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="MapLoader.h" />
+    <ClInclude Include="ObjLibrary.h" />
+    <ClInclude Include="ObjModel.h" />
+    <ClInclude Include="ObjModelComponent.h" />
+    <ClInclude Include="ObjTexture.h" />
     <ClInclude Include="PlayerMoveComponent.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="S_Vertex.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WorldComponent.h" />
   </ItemGroup>

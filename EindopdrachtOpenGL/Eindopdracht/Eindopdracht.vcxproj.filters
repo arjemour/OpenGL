@@ -30,6 +30,12 @@
     <Filter Include="Source Files\Render\Window">
       <UniqueIdentifier>{b7f99e19-b6da-40ea-ae71-70c046d1f060}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Tools\ModelLoading">
+      <UniqueIdentifier>{b589e871-3500-4e04-94a4-de2922795254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tools\ImageLoading">
+      <UniqueIdentifier>{9509ab03-eb54-4bc5-917b-6c0baf9de07c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -65,6 +71,30 @@
     <ClCompile Include="PlayerMoveComponent.cpp">
       <Filter>Source Files\Entities\Components</Filter>
     </ClCompile>
+    <ClCompile Include="ObjModel.cpp">
+      <Filter>Source Files\Tools\ModelLoading</Filter>
+    </ClCompile>
+    <ClCompile Include="S_Vertex.cpp">
+      <Filter>Source Files\Tools\ModelLoading</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTexture.cpp">
+      <Filter>Source Files\Tools\ModelLoading</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjModelComponent.cpp">
+      <Filter>Source Files\Entities\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyMovementComponent.cpp">
+      <Filter>Source Files\Entities\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLoader.cpp">
+      <Filter>Source Files\Tools\ImageLoading</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjLibrary.cpp">
+      <Filter>Source Files\Tools\ModelLoading</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibrary.cpp">
+      <Filter>Source Files\Tools\ImageLoading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -99,6 +129,33 @@
     </ClInclude>
     <ClInclude Include="PlayerMoveComponent.h">
       <Filter>Source Files\Entities\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Source Files\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjModel.h">
+      <Filter>Source Files\Tools\ModelLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Vertex.h">
+      <Filter>Source Files\Tools\ModelLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTexture.h">
+      <Filter>Source Files\Tools\ModelLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjModelComponent.h">
+      <Filter>Source Files\Entities\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyMovementComponent.h">
+      <Filter>Source Files\Entities\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLoader.h">
+      <Filter>Source Files\Tools\ImageLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibrary.h">
+      <Filter>Source Files\Tools\ImageLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjLibrary.h">
+      <Filter>Source Files\Tools\ModelLoading</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

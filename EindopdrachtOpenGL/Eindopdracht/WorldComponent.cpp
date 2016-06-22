@@ -18,8 +18,6 @@ WorldComponent::WorldComponent(std::string mapPath, b2World* world) : world(worl
 				break;
 			case 1:
 				coords.push_back(new Coords(x, y));
-				Box* box = new Box(world, x, y, 1, 1, false, false);
-				boxes.push_back(box);
 				break;
 			}
 			x += 2;
@@ -27,8 +25,12 @@ WorldComponent::WorldComponent(std::string mapPath, b2World* world) : world(worl
 		y += 2;
 		x = 0;
 	}
-	//Box* box = new Box(world, 0, 0, 10000, 1, false, false);
-	//boxes.push_back(box);
+	Box* box = new Box(world, 0, 0, 228, 1, false, false);
+	Box* box2 = new Box(world, 0, 0, 1, 22, false, false);
+	Box* box3 = new Box(world, 114, 0, 1, 22, false, false);
+	boxes.push_back(box);
+	boxes.push_back(box2);
+	boxes.push_back(box3);
 }
 
 WorldComponent::~WorldComponent()

@@ -8,7 +8,7 @@
 #include "Entity.h"
 #include <Box2D/Box2D.h>
 #include "BoxComponent.h"
-float lowerX = -25.0f, upperX = 25.0f, lowerY = -25.0f, upperY = 25.0f;
+#include "PlayerMoveComponent.h"
 int fps = 60;
 float timePerTick = 1000 / fps;
 float delta = 0;
@@ -96,10 +96,16 @@ void update()
 	{
 		for each(auto component in entity->getComponents())
 		{
-			if (dynamic_cast<const BoxComponent*>(component) != nullptr)
+			if (dynamic_cast<const PlayerMoveComponent*>(component) != nullptr)
 			{
-				BoxComponent* player = (BoxComponent*)component;
-				camera.posX = player->box->body->GetPosition().x * 60 * -1;
+				for each(auto component in entity->getComponents())
+				{
+					if (dynamic_cast<const BoxComponent*>(component) != nullptr)
+					{
+						BoxComponent* player = (BoxComponent*)component;
+						camera.posX = player->box->body->GetPosition().x * 60 * -1;
+					}
+				}
 			}
 		}
 	}
@@ -148,25 +154,14 @@ void Window::display()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(60.0f, (float)width / height, 0.1, 1000);
-	//gluOrtho2D(lowerX, upperX, lowerY, upperY);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glRotatef(camera.rotX, 1, 0, 0);
 	glRotatef(camera.rotY, 0, 1, 0);
-	//glTranslatef(1, 1.5f, 0);
 	glTranslatef(camera.posX, -10, -20);
 
-	float pos[4] = { 0.5, 1, -1, 0 };
+	float pos[4] = { 50.0f, 20.0f, 8.0f, 1.0f };
 	glLightfv(GL_LIGHT0, GL_POSITION, pos);
-
-
-	glColor3f(0.1f, 1.0f, 0.2f);
-/*	glBegin(GL_QUADS);
-	glVertex3f(-15, -1, -15);
-	glVertex3f(15, -1, -15);
-	glVertex3f(15, -1, 15);
-	glVertex3f(-15, -1, 15);
-	glEnd();*/
 
 	for (auto entity : entities) entity->render();
 

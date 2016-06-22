@@ -5,10 +5,12 @@
 #include "WorldComponent.h"
 #include "BoxComponent.h"
 #include "PlayerMoveComponent.h"
+#include "ObjModelComponent.h"
+#include "EnemyMovementComponent.h"
 
 b2World* world;
 std::vector<Entity*> entities;
-//extern std::vector<std::pair<std::string, ObjModel*>> objectLibrary;
+extern std::vector<pair<string, ObjModel*>> objectLibrary;
 
 Engine::Engine()
 {
@@ -20,10 +22,16 @@ Engine::Engine()
 	entities.push_back(worldEntity);
 
 	auto* player = new Entity(10, 100, 0);
-	player->addComponent(new CubeModelComponent());
+	player->addComponent(new ObjModelComponent(objectLibrary[0].second));
 	player->addComponent(new BoxComponent(world, player));
 	player->addComponent(new PlayerMoveComponent);
 	entities.push_back(player);
+
+	auto* box = new Entity(70, 2, 0);
+	box->addComponent(new ObjModelComponent(objectLibrary[1].second));
+	box->addComponent(new BoxComponent(world, box));
+	box->addComponent(new EnemyMovementComponent(70, 80));
+	entities.push_back(box);
 }
 
 Engine::~Engine()
