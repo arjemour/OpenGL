@@ -98,6 +98,9 @@
     <ClCompile Include="WorldContactListener.cpp">
       <Filter>Source Files\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="UserInterfaceComponent.cpp">
+      <Filter>Source Files\Entities\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -165,6 +168,9 @@
     </ClInclude>
     <ClInclude Include="ObjectIdLibrary.h">
       <Filter>Source Files\Tools\ImageLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterfaceComponent.h">
+      <Filter>Source Files\Entities\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

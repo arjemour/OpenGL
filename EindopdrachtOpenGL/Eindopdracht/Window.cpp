@@ -24,6 +24,7 @@ int direction = 100;
 CubeModel cube;
 extern std::vector<Entity*> entities;
 extern b2World* world;
+extern bool canJump;
 std::vector<Entity*> entitiesToAdd;
 
 struct Camera
@@ -117,14 +118,16 @@ void Window::idle()
 	float deltaTime = frameTime - lastFrameTime;
 	lastFrameTime = frameTime;
 
-	const float speed = 3;
-	if (keys['a']) move(0, deltaTime*speed);
-	if (keys['d']) move(180, deltaTime*speed);
-	if (keys['w']) move(90, deltaTime*speed);
-	if (keys['s']) move(270, deltaTime*speed);
-	if (keys['z']) direction = 0;
-	if (keys['x']) direction = 1;
-	if (keys['c']) direction = 2;
+	if (keys['a']) direction = 0;
+	if (keys['d']) direction = 1;
+	if (keys['w'])
+	{
+		if (canJump)
+		{
+			canJump = false;
+			direction = 2;
+		}
+	}
 
 	timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
 	delta += (timeSinceStart - oldTimeSinceStart) / timePerTick;
@@ -160,7 +163,7 @@ void Window::display()
 	glRotatef(camera.rotY, 0, 1, 0);
 	glTranslatef(camera.posX, -10, -20);
 
-	float pos[4] = { 50.0f, 20.0f, 8.0f, 1.0f };
+	float pos[4] = { 50.0f, 1.0f, 8.0f, 1.0f };
 	glLightfv(GL_LIGHT0, GL_POSITION, pos);
 
 	for (auto entity : entities) entity->render();

@@ -20,7 +20,7 @@ void PlayerMoveComponent::update(Entity& entity)
 		if (dynamic_cast<const BoxComponent*>(component) != nullptr)
 		{
 			BoxComponent* player = (BoxComponent*)component;
-			float impulse = player->box->body->GetMass() / 5;
+			float impulse = player->box->body->GetMass() * 1.5f;
 			switch (direction)
 			{
 			case 0:

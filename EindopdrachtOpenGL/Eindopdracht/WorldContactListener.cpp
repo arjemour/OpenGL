@@ -6,7 +6,8 @@
 #include "PlayerMoveComponent.h"
 #include "EnemyMovementComponent.h"
 #include "BoxComponent.h"
-
+int deaths = 0;
+bool canJump = false;
 extern std::vector<Entity*> entities;
 
 WorldContactListener::WorldContactListener(b2World& world)
@@ -24,6 +25,13 @@ void WorldContactListener::BeginContact(b2Contact* contact)
 	Entity* player = new Entity;
 	int bodyUserData1 = (int)contact->GetFixtureA()->GetBody()->GetUserData();
 	int bodyUserData2 = (int)contact->GetFixtureB()->GetBody()->GetUserData();
+
+	if ((bodyUserData1 == playerId || bodyUserData2 == playerId) && (bodyUserData1 == boxId || bodyUserData2 == boxId))
+	{
+		std::cout << "jump" << std::endl;
+		canJump = true;
+	}
+
 	if ((bodyUserData1 == playerId || bodyUserData2 == playerId) && (bodyUserData1 == enemyId || bodyUserData2 == enemyId))
 	{
 		for(auto entity : entities)
@@ -41,7 +49,7 @@ void WorldContactListener::BeginContact(b2Contact* contact)
 							{
 								BoxComponent* move = (BoxComponent*)component2;
 								move->box->reset(player);
-								std::cout << "test";
+								deaths++;
 							}
 						}
 					}

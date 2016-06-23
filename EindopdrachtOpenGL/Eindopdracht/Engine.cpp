@@ -9,6 +9,7 @@
 #include "EnemyMovementComponent.h"
 #include "WorldContactListener.h"
 #include "ObjectIdLibrary.h"
+#include "UserInterfaceComponent.h"
 
 b2World* world;
 std::vector<Entity*> entities;
@@ -35,6 +36,10 @@ Engine::Engine()
 	enemy->addComponent(new BoxComponent(world, enemy, enemyId));
 	enemy->addComponent(new EnemyMovementComponent(70, 80));
 	entities.push_back(enemy);
+
+	auto* gui = new Entity(0, 0, 0);
+	gui->addComponent(new UserInterfaceComponent);
+	entities.push_back(gui);
 }
 
 Engine::~Engine()

@@ -143,6 +143,7 @@
     <ClCompile Include="ObjTexture.cpp" />
     <ClCompile Include="PlayerMoveComponent.cpp" />
     <ClCompile Include="S_Vertex.cpp" />
+    <ClCompile Include="UserInterfaceComponent.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WorldComponent.cpp" />
     <ClCompile Include="WorldContactListener.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="PlayerMoveComponent.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="S_Vertex.h" />
+    <ClInclude Include="UserInterfaceComponent.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WorldComponent.h" />
     <ClInclude Include="WorldContactListener.h" />
