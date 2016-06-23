@@ -3,8 +3,9 @@
 #include "BoxComponent.h"
 #include "ObjModelComponent.h"
 
-EnemyMovementComponent::EnemyMovementComponent(int minX, int maxX) : minX(minX), maxX(maxX)
+EnemyMovementComponent::EnemyMovementComponent(Entity* entity, int minX, int maxX, float maxSpeed) : minX(minX), maxX(maxX), maxSpeed(maxSpeed)
 {
+	startX = entity->x;
 }
 
 
@@ -19,12 +20,12 @@ void EnemyMovementComponent::update(Entity& entity)
 		if (dynamic_cast<const BoxComponent*>(component) != nullptr)
 		{
 			BoxComponent* player = (BoxComponent*)component;
-			if (minX >= entity.x)
+			if (startX - minX >= entity.x)
 			{
 				left = false;
 				rotate(entity);
 			}
-			if (maxX <= entity.x)
+			if (startX + maxX <= entity.x)
 			{
 				left = true;
 				rotate(entity);
@@ -32,9 +33,8 @@ void EnemyMovementComponent::update(Entity& entity)
 			if (left) player->box->body->ApplyLinearImpulseToCenter(b2Vec2(-100, 0.0), true);
 			else player->box->body->ApplyLinearImpulseToCenter(b2Vec2(100, 0.0), true);
 
-			float MAX_SPEED = 0.5f;
-			if (player->box->body->GetLinearVelocity().x < -MAX_SPEED) player->box->body->SetLinearVelocity(b2Vec2(-MAX_SPEED, player->box->body->GetLinearVelocity().y));
-			else if (player->box->body->GetLinearVelocity().x > MAX_SPEED) player->box->body->SetLinearVelocity(b2Vec2(MAX_SPEED, player->box->body->GetLinearVelocity().y));
+			if (player->box->body->GetLinearVelocity().x < -maxSpeed) player->box->body->SetLinearVelocity(b2Vec2(-maxSpeed, player->box->body->GetLinearVelocity().y));
+			else if (player->box->body->GetLinearVelocity().x > maxSpeed) player->box->body->SetLinearVelocity(b2Vec2(maxSpeed, player->box->body->GetLinearVelocity().y));
 		}
 	}
 }

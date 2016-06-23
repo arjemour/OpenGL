@@ -5,6 +5,6 @@
 class ImageLoader
 {
 public:
-	static GLuint loadImage(std::string filepath, int width, int height);
+	static GLuint* loadImage(std::string filepath, int width, int height);
 };
 

@@ -5,7 +5,7 @@
 class EnemyMovementComponent : public Component
 {
 public:
-	EnemyMovementComponent(int minX, int maxX);
+	EnemyMovementComponent(Entity* entity, int minX, int maxX, float maxSpeed);
 	~EnemyMovementComponent();
 
 	void update(Entity& entity) override;
@@ -13,6 +13,8 @@ public:
 private:
 	int minX;
 	int maxX;
+	int startX;
+	float maxSpeed;
 	bool left = false;
 
 	void rotate(Entity& entity);

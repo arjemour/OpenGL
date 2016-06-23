@@ -24,8 +24,10 @@ public:
 
 private:
 	std::vector<Box*> boxes;
-	std::vector<Coords*> coords;
-	CubeModel cube;
+	std::vector<Coords*> dirtCoords;
+	std::vector<Coords*> clayCoords;
+	CubeModel* dirtCube;
+	CubeModel* clayCube;
 	b2World* world;
 };
 

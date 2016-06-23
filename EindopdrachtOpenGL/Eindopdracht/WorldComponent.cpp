@@ -4,8 +4,11 @@
 #include <iostream>
 #include "ObjectIdLibrary.h"
 
+extern std::vector<GLuint*> images;
 WorldComponent::WorldComponent(std::string mapPath, b2World* world) : world(world)
 {
+	dirtCube = new CubeModel(images.at(0));
+	clayCube = new CubeModel(images.at(1));
 	std::vector<std::vector<int>> map;
 	MapLoader::loadMap(mapPath, map);
 	float x = 0, y = 0;
@@ -18,20 +21,27 @@ WorldComponent::WorldComponent(std::string mapPath, b2World* world) : world(worl
 			case 0:
 				break;
 			case 1:
-				coords.push_back(new Coords(x, y));
+				dirtCoords.push_back(new Coords(x, y));
 				break;
+			case 2:
+				clayCoords.push_back(new Coords(x, y));
 			}
 			x += 2;
 		}
 		y += 2;
 		x = 0;
 	}
+
 	Box* box = new Box(world, 0, 0, 228, 1, boxId, false, false);
 	Box* box2 = new Box(world, 0, 0, 1, 44, boxId, false, false);
 	Box* box3 = new Box(world, 114, 0, 1, 44, boxId, false, false);
+	Box* box4 = new Box(world, 7, 6, 2, 1, boxId, false, false);
+	Box* box5 = new Box(world, 23, 10, 2, 1, boxId, false, false);
 	boxes.push_back(box);
 	boxes.push_back(box2);
 	boxes.push_back(box3);
+	boxes.push_back(box4);
+	boxes.push_back(box5);
 }
 
 WorldComponent::~WorldComponent()
@@ -45,11 +55,18 @@ void WorldComponent::update(Entity& entity)
 
 void WorldComponent::render(Entity& entity)
 {
-	for (auto coord : coords)
+	for (auto coord : dirtCoords)
 	{
 		glPushMatrix();
 		glTranslatef(coord->x, coord->y, 0.0f);
-		cube.drawCube();
+		dirtCube->drawCube();
+		glPopMatrix();
+	}
+	for (auto coord : clayCoords)
+	{
+		glPushMatrix();
+		glTranslatef(coord->x, coord->y, 0.0f);
+		clayCube->drawCube();
 		glPopMatrix();
 	}
 }

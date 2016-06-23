@@ -2,9 +2,9 @@
 #include "GL/freeglut.h"
 #include <iostream>
 
-CubeModelComponent::CubeModelComponent()
+CubeModelComponent::CubeModelComponent(GLuint* texture)
 {
-	cube = new CubeModel();
+	cube = new CubeModel(texture);
 }
 
 CubeModelComponent::~CubeModelComponent()

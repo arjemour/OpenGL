@@ -2,17 +2,17 @@
 #include "stb_image.h"
 #include "GL/freeglut.h"
 
-GLuint ImageLoader::loadImage(std::string filepath, int width, int height)
+GLuint* ImageLoader::loadImage(std::string filepath, int width, int height)
 {
-	GLuint textureId;
+	GLuint* textureId = new GLuint;
 	width = 32;
 	height = 32;
 	int bpp = 32;
 	unsigned char* image = stbi_load(filepath.c_str(), &width, &height, &bpp, 4);
 	if (image == nullptr)
 		throw(std::string("Failed to load texture"));
-	glGenTextures(1, &textureId);
-	glBindTexture(GL_TEXTURE_2D, textureId);
+	glGenTextures(1, textureId);
+	glBindTexture(GL_TEXTURE_2D, *textureId);
 	glTexImage2D(GL_TEXTURE_2D,
 		0,		//level
 		GL_RGBA,		//internal format

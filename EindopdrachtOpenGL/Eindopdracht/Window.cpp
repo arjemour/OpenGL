@@ -21,7 +21,6 @@ float lastFrameTime = 0;
 bool keys[255];
 bool justMoved = false;
 int direction = 100;
-CubeModel cube;
 extern std::vector<Entity*> entities;
 extern b2World* world;
 extern bool canJump;

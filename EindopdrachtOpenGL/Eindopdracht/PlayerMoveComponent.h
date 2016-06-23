@@ -7,5 +7,10 @@ public:
 	~PlayerMoveComponent();
 
 	void update(Entity& entity) override;
+
+private:
+	bool left = false;
+
+	void rotate(Entity& entity);
 };
 

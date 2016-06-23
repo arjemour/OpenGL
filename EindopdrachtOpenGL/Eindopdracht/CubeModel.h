@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <GL/freeglut.h>
 
 struct Vertex
 {
@@ -11,12 +11,12 @@ struct Vertex
 class CubeModel
 {
 public:
-	CubeModel();
+	CubeModel(GLuint* texture);
 	~CubeModel();
 
 	void drawCube();
 
 private:
-	std::vector<Vertex> cubeVertices;
+	GLuint* texture;
 };
 

@@ -1,39 +1,8 @@
 #include "CubeModel.h"
 #include <GL/freeglut.h>
 
-extern std::vector<GLuint> images;
-
-CubeModel::CubeModel()
+CubeModel::CubeModel(GLuint* texture) : texture(texture)
 {
-	cubeVertices.push_back(Vertex{ -1, -1, -1, 0,0,1, 1,1,1,1 });
-	cubeVertices.push_back(Vertex{ -1,  1, -1, 0,0,1, 1,1,1,1 });
-	cubeVertices.push_back(Vertex{ 1,  1, -1, 0,0,1, 1,1,1,1 });
-	cubeVertices.push_back(Vertex{ 1, -1, -1, 0,0,1, 1,1,1,1 });
-
-	cubeVertices.push_back(Vertex{ -1, -1,  1, 0,0,-1, 1,1,1,1 });
-	cubeVertices.push_back(Vertex{ -1,  1,  1, 0,0,-1, 1,1,1,1 });
-	cubeVertices.push_back(Vertex{ 1,  1,  1, 0,0,-1, 1,1,1,1 });
-	cubeVertices.push_back(Vertex{ 1, -1,  1, 0,0,-1, 1,1,1,1 });
-
-	cubeVertices.push_back(Vertex{ -1,  -1, -1,		0,-1,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ -1,  -1,  1,		0,-1,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ 1,  -1,  1,		0,-1,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ 1,  -1, -1,		0,-1,0,		1,1,1,1 });
-
-	cubeVertices.push_back(Vertex{ -1,  1, -1,		0,1,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ -1,  1,  1,		0,1,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ 1,  1,  1,		0,1,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ 1,  1, -1,		0,1,0,		1,1,1,1 });
-
-	cubeVertices.push_back(Vertex{ -1, -1, -1,		-1,0,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ -1, -1,  1,		-1,0,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ -1,  1,  1,		-1,0,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ -1,  1, -1,		-1,0,0,		1,1,1,1 });
-
-	cubeVertices.push_back(Vertex{ 1, -1, -1,		1,0,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ 1, -1,  1,		1,0,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ 1,  1,  1,		1,0,0,		1,1,1,1 });
-	cubeVertices.push_back(Vertex{ 1,  1, -1,		1,0,0,		1,1,1,1 });
 }
 
 
@@ -45,7 +14,7 @@ void CubeModel::drawCube()
 {
 	glEnable(GL_TEXTURE_2D);
 	glColor3f(1.0f, 1.0f, 1.0f);
-	glBindTexture(GL_TEXTURE_2D, images.at(0));
+	glBindTexture(GL_TEXTURE_2D, *texture);
 
 	glBegin(GL_QUADS);			
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);	// Bottom Left Of The Texture and Quad

@@ -6,7 +6,7 @@
 class CubeModelComponent : public Component
 {
 public:
-	CubeModelComponent();
+	CubeModelComponent(GLuint* texture);
 	~CubeModelComponent();
 
 	void render(Entity& entity) override;
