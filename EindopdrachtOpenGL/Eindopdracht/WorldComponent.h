@@ -4,6 +4,7 @@
 #include "CubeModel.h"
 #include <Box2D/Box2D.h>
 #include "Box.h"
+#include "CustomModel.h"
 
 struct Coords
 {
@@ -29,5 +30,6 @@ private:
 	CubeModel* dirtCube;
 	CubeModel* clayCube;
 	b2World* world;
+	CustomModel model;
 };
 

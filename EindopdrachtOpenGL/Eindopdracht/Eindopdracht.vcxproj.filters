@@ -101,6 +101,9 @@
     <ClCompile Include="UserInterfaceComponent.cpp">
       <Filter>Source Files\Entities\Components</Filter>
     </ClCompile>
+    <ClCompile Include="CustomModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -172,5 +175,6 @@
     <ClInclude Include="UserInterfaceComponent.h">
       <Filter>Source Files\Entities\Components</Filter>
     </ClInclude>
+    <ClInclude Include="CustomModel.h" />
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 #include "GL/freeglut.h"
 #include <iostream>
 #include "ObjectIdLibrary.h"
+#include "CustomModel.h"
 
 extern std::vector<GLuint*> images;
 WorldComponent::WorldComponent(std::string mapPath, b2World* world) : world(world)
@@ -37,11 +38,17 @@ WorldComponent::WorldComponent(std::string mapPath, b2World* world) : world(worl
 	Box* box3 = new Box(world, 114, 0, 1, 44, boxId, false, false);
 	Box* box4 = new Box(world, 7, 6, 2, 1, boxId, false, false);
 	Box* box5 = new Box(world, 23, 10, 2, 1, boxId, false, false);
+	Box* box6 = new Box(world, 33, 4, 2, 1, boxId, false, false);
+	Box* box7 = new Box(world, 56, 6, 4, 1, boxId, false, false);
+	Box* box8 = new Box(world, 86, 6, 4, 1, boxId, false, false);
 	boxes.push_back(box);
 	boxes.push_back(box2);
 	boxes.push_back(box3);
 	boxes.push_back(box4);
 	boxes.push_back(box5);
+	boxes.push_back(box6);
+	boxes.push_back(box7);
+	boxes.push_back(box8);
 }
 
 WorldComponent::~WorldComponent()
@@ -69,4 +76,9 @@ void WorldComponent::render(Entity& entity)
 		clayCube->drawCube();
 		glPopMatrix();
 	}
+	
+	glPushMatrix();
+	glTranslatef(40, 15, 0);
+	model.draw();
+	glPopMatrix();
 }
